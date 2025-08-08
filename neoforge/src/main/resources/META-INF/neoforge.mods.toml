@@ -1,0 +1,35 @@
+modLoader = "kotlinforforge"
+loaderVersion = "[${forge_kotlin_version},)"
+issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "cobblebattletips"
+version = "${version}"
+displayName = "CobbleBattleTips"
+authors = "rockmaks_00"
+description = ""
+logoFile = "assets/cobblebattletips/icon.png"
+
+[[dependencies.cobblebattletips]]
+modId = "neoforge"
+versionRange = "[${loader_version},)"
+
+[[dependencies.cobblebattletips]]
+modId = "kotlinforforge"
+versionRange = "[${forge_kotlin_version},)"
+
+[[dependencies.cobblebattletips]]
+modId = "minecraft"
+versionRange = "[${minecraft_version}]"
+
+[[dependencies.cobblebattletips]]
+modId = "architectury"
+versionRange = "[${architectury_version},)"
+
+[[dependencies.cobblebattletips]]
+modId = "cobblemon"
+versionRange = "[${cobblemon_version},)"
+
+[[mixins]]
+config = "cobblebattletips.mixins.json"
