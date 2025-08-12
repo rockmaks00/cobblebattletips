@@ -1,5 +1,6 @@
 package rockmaks.cobblebattletips.mixin;
 
+import com.cobblemon.mod.common.battles.Targetable;
 import rockmaks.cobblebattletips.BattleMoveTooltip;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.client.gui.battle.subscreen.BattleMoveSelection.MoveTile;
@@ -20,12 +21,15 @@ public abstract class BattleMoveTooltipMixin {
     public abstract boolean isHovered(double mouseX, double mouseY);
 
     @Shadow
+    public abstract List<Targetable> getTargetList();
+
+    @Shadow
     private MoveTemplate moveTemplate;
 
     @Inject(method = "render", at = @At("TAIL"))
     public void renderTooltip(GuiGraphics context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if (this.isHovered(mouseX, mouseY)) {
-            List<Component> tooltipInfo = BattleMoveTooltip.buildTooltip(moveTemplate);
+            List<Component> tooltipInfo = BattleMoveTooltip.buildTooltip(moveTemplate, this.getTargetList());
             context.renderComponentTooltip(Minecraft.getInstance().font, tooltipInfo, mouseX, mouseY);
         }
     }

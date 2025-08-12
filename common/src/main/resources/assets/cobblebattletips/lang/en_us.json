@@ -1,2 +1,5 @@
 {
+  "cobblebattletips.immune": "Immune",
+  "cobblebattletips.effective": "x%f Super Effective",
+  "cobblebattletips.ineffective": "x%f Ineffective"
 }
