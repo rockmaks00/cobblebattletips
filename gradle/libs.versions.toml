@@ -3,6 +3,7 @@ kotlin = "2.0.10"
 
 minecraft = "1.21.1"
 architectury = "13.0.6"
+parchment = "2024.11.13"
 architectury_loom = "1.7-SNAPSHOT"
 architectury_gradle = "3.4-SNAPSHOT"
 
@@ -32,6 +33,7 @@ kotlin_reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref =
 kotlin_json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.5.1" }
 
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+parchment = { module = "org.parchmentmc.data:parchment-1.21.1", version.ref = "parchment" }
 architectury = { module = "dev.architectury:architectury", version.ref = "architectury" }
 
 architectury_fabric = { module = "dev.architectury:architectury-fabric", version.ref = "architectury" }
