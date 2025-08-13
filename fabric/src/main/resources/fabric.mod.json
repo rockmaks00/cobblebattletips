@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblebattletips",
+  "version": "${version}",
+  "name": "CobbleBattleTips",
+  "description": "",
+  "icon": "assets/cobblebattletips/icon.png",
+  "authors": [
+    "rockmaks_00"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "rockmaks.cobblebattletips.fabric.CobbleBattleTips"
+    ]
+  },
+  "mixins": [
+    "cobblebattletips.mixins.json"
+  ],
+  "depends": {
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}",
+    "architectury": "${architectury_version}.x",
+    "cobblemon": ">=${cobblemon_version}"
+  }
+}

@@ -54,8 +54,7 @@ object BattleMoveTooltip {
                 )
             }
             if (move.effectChances.isNotEmpty()) {
-                val amogus = move.effectChances
-                val chancesText = amogus.joinToString(", ") { "${it.toInt()}%" }
+                val chancesText = move.effectChances.joinToString(", ") { "${it.toInt()}%" }
                 tooltipInfo.add(
                     lang("ui.effect").append(Component.literal(": $chancesText"))
                 )
