@@ -1,7 +1,6 @@
 plugins {
     id("cobblebattletips.base-conventions")
     id("com.github.johnrengelman.shadow")
-//    alias(libs.plugins.shadow)
 }
 
 val bundle: Configuration by configurations.creating {

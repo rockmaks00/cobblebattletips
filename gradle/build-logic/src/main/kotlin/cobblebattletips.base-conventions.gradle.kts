@@ -7,14 +7,12 @@ plugins {
     kotlin("jvm")
     id("architectury-plugin")
     id("dev.architectury.loom")
-//    alias(libs.plugins.kotlin.jvm)
-//    alias(libs.plugins.architectury)
-//    alias(libs.plugins.loom)
 }
 
 repositories {
     maven("https://maven.impactdev.net/repository/development/")
     maven("https://maven.neoforged.net/releases")
+    maven("https://maven.parchmentmc.org")
 }
 
 java {
@@ -49,7 +47,7 @@ dependencies {
     @Suppress("UnstableApiUsage")
     mappings(loom.layered {
         officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-1.21:2024.07.28@zip")
+        parchment(libs.parchment)
     })
 
     testRuntimeOnly(libs.junit.launcher)
