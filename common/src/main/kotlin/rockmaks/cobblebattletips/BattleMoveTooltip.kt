@@ -3,6 +3,7 @@ package rockmaks.cobblebattletips
 import com.cobblemon.mod.common.api.moves.MoveTemplate
 import com.cobblemon.mod.common.api.moves.categories.DamageCategories
 import com.cobblemon.mod.common.battles.Targetable
+import com.cobblemon.mod.common.client.battle.ActiveClientBattlePokemon
 import com.cobblemon.mod.common.util.lang
 import net.minecraft.ChatFormatting
 import net.minecraft.client.Minecraft
@@ -45,17 +46,20 @@ object BattleMoveTooltip {
             if (move.power > 0) {
                 tooltipInfo.add(
                     lang("ui.power").append(Component.literal(": ${move.power.toInt()}"))
-                )}
+                )
+            }
             if (move.accuracy > 0) {
                 tooltipInfo.add(
                     lang("ui.accuracy").append(Component.literal(": ${move.accuracy.toInt()}%"))
-                )}
+                )
+            }
             if (move.effectChances.isNotEmpty()) {
                 val amogus = move.effectChances
                 val chancesText = amogus.joinToString(", ") { "${it.toInt()}%" }
                 tooltipInfo.add(
                     lang("ui.effect").append(Component.literal(": $chancesText"))
-                )}
+                )
+            }
         }
     }
 
@@ -68,22 +72,43 @@ object BattleMoveTooltip {
             return
         }
 
+        var emptyAdded = false
+        fun addEmptyOnce() {
+            if (!emptyAdded) {
+                tooltipInfo.add(Component.empty())
+                emptyAdded = true
+            }
+        }
+
         for (target in targets) {
+            val name = (target as ActiveClientBattlePokemon)
+                .battlePokemon?.displayName?.copy()?.setStyle(Style.EMPTY)?.append(": ")
+                ?: continue
             val effectiveness = MoveEffectiveness.getModifier(move, target)
 
             if (effectiveness == 0.0) {
+                addEmptyOnce()
                 tooltipInfo.add(
-                    Component.translatable("cobblebattletips.immune")
-                        .withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY)
+                    name.append(
+                        Component.translatable("cobblebattletips.immune")
+                            .withStyle(ChatFormatting.DARK_RED)
+                    )
                 )
             } else if (effectiveness > 1) {
+                addEmptyOnce()
                 tooltipInfo.add(
-                    Component.translatable("cobblebattletips.effective", effectiveness)
-                        .withStyle(ChatFormatting.BOLD, ChatFormatting.GOLD)
+                    name.append(
+                        Component.translatable("cobblebattletips.effective", effectiveness)
+                            .withStyle(ChatFormatting.DARK_GREEN)
+                    )
                 )
             } else if (effectiveness < 1) {
-                tooltipInfo.add(Component.translatable("cobblebattletips.ineffective", effectiveness)
-                    .withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY)
+                addEmptyOnce()
+                tooltipInfo.add(
+                    name.append(
+                        Component.translatable("cobblebattletips.ineffective", effectiveness)
+                            .withStyle(ChatFormatting.GRAY)
+                    )
                 )
             }
         }

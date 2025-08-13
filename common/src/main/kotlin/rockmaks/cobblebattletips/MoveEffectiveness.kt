@@ -31,8 +31,11 @@ object MoveEffectiveness {
         if (target is ActiveClientBattlePokemon) {
             val props = target.battlePokemon?.properties
             val species = PokemonSpecies.getByName(props?.species ?: return null to null)
-            val formData = species?.forms
-                ?.firstOrNull { it.name.equals(props.form, true) }
+            val forms = species?.forms
+            if (forms?.isEmpty() ?: false) {
+                return species.primaryType to species.secondaryType
+            }
+            val formData = forms?.firstOrNull { it.name.equals(props.form, true) }
             return formData?.primaryType to formData?.secondaryType
         }
         return null to null
