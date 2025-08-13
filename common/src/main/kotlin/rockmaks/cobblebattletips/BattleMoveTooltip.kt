@@ -110,6 +110,13 @@ object BattleMoveTooltip {
                             .withStyle(ChatFormatting.GRAY)
                     )
                 )
+            } else {
+                addEmptyOnce()
+                tooltipInfo.add(
+                    name.append(
+                        Component.translatable("cobblebattletips.normal", effectiveness)
+                    )
+                )
             }
         }
     }
