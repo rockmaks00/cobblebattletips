@@ -1,0 +1,6 @@
+{
+  "cobblebattletips.immune": "Sin efecto",
+  "cobblebattletips.effective": "x%f Súper efectivo",
+  "cobblebattletips.ineffective": "x%f Poco efectivo",
+  "cobblebattletips.normal": "x%f Normal"
+}
